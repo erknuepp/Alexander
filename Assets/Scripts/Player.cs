@@ -21,15 +21,28 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _horizontalInput = Input.GetAxis("Horizontal");
-        _verticalInput = Input.GetAxis("Vertical");
-        if (Input.GetKey(KeyCode.E))
+        try
         {
-            transform.Rotate(0.0f, 1f, 0.0f, Space.Self);
+            _horizontalInput = Input.GetAxis("Horizontal");
+            _verticalInput = Input.GetAxis("Vertical");
+            var inputString = Input.inputString;
+            if (inputString != ((char)KeyCode.Q).ToString() && inputString != ((char)KeyCode.E).ToString() && inputString != "")
+            {
+                throw new System.FormatException("invalid key");
+            }
+
+            if (Input.GetKey(KeyCode.E))
+            {
+                transform.Rotate(0.0f, 1f, 0.0f, Space.Self);
+            }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                transform.Rotate(0.0f, -1f, 0.0f, Space.Self);
+            }
         }
-        if (Input.GetKey(KeyCode.Q))
+        catch (System.FormatException fe)
         {
-            transform.Rotate(0.0f, -1f, 0.0f, Space.Self);
+            Debug.Log(fe.Message);
         }
 
     }
