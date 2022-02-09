@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     private float _horizontalInput;
     private float _verticalInput;
+    private float _leftRotateInput;
+    private float _rightRotateInput;
     
     private Rigidbody _rigidBodyComponent;
 
@@ -21,14 +23,20 @@ public class Player : MonoBehaviour
     {
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-        if(Input.inputString == "x")
+        if (Input.GetKey(KeyCode.E))
         {
-            throw new System.FormatException("X is not a valid key.");
+            transform.Rotate(0.0f, 1f, 0.0f, Space.Self);
         }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            transform.Rotate(0.0f, -1f, 0.0f, Space.Self);
+        }
+
     }
 
     void FixedUpdate()
     {
+        
         _rigidBodyComponent.velocity = new Vector3(_horizontalInput * Speed, _rigidBodyComponent.velocity.y, _verticalInput * Speed);
     }
 }
