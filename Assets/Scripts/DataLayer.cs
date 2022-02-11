@@ -15,9 +15,7 @@
             using (StreamWriter sw = File.CreateText(path))
             {
                 sw.WriteLine(text);
-            }
-
-            
+            }            
         }
 
         public static string ReadFile(string path = @".\score.txt")
@@ -32,9 +30,7 @@
             else
             {
                 return "0";
-            }
-            
+            }            
         }
-
     }
 }
