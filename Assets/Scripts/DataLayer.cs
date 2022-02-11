@@ -17,16 +17,24 @@
                 sw.WriteLine(text);
             }
 
-            //// Open the file to read from.
-            //using (StreamReader sr = File.OpenText(path))
-            //{
-            //    string s;
-            //    while ((s = sr.ReadLine()) != null)
-            //    {
-            //        Console.WriteLine(s);
-            //    }
-            //}
+            
         }
-        
+
+        public static string ReadFile(string path = @".\score.txt")
+        {
+            // Open the file to read from.
+            if (File.Exists(path)) {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    return sr.ReadLine();
+                }
+            }
+            else
+            {
+                return "0";
+            }
+            
+        }
+
     }
 }

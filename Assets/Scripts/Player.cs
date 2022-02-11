@@ -59,4 +59,12 @@ public class Player : MonoBehaviour
         
         _rigidBodyComponent.velocity = new Vector3(_horizontalInput * Speed, _rigidBodyComponent.velocity.y, _verticalInput * Speed);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name.Contains("NPC"))
+        {
+            ScoreKeeper.Total -= 100;
+        }
+    }
 }

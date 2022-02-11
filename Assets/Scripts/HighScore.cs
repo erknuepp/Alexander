@@ -9,7 +9,7 @@ public class HighScore : MonoBehaviour
     void Start()
     {
         tmp = gameObject.GetComponent<TextMeshPro>();
-        tmp.text = "100000";
+        tmp.text = Assets.Scripts.DataLayer.ReadFile();
     }
 
     // Update is called once per frame

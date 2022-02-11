@@ -21,6 +21,9 @@ public class Score : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        DataLayer.CreateAndWriteFile(ScoreKeeper.Total.ToString());
+        if(ScoreKeeper.Total > ScoreKeeper.High)
+        {
+            DataLayer.CreateAndWriteFile(ScoreKeeper.Total.ToString());
+        }
     }
 }
