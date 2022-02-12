@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,14 +55,17 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.name.Contains("Death-Dealer"))
         {
-            var tada = gameObject.GetComponents<AudioSource>()[1];
-            tada.Play();
-            new WaitForSeconds(3.0f);
-
-            ScoreKeeper.Total = 0;
-            
+            StartCoroutine(Sound());
+            ScoreKeeper.Total = 0;            
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         
+    }
+
+    IEnumerator Sound()
+    {
+        var tada = gameObject.GetComponents<AudioSource>()[1];
+        tada.Play();
+        yield return new WaitForSeconds(10.0f);
     }
 }
