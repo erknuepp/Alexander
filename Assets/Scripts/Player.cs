@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -29,29 +30,7 @@ public class Player : MonoBehaviour
         {
             transform.Rotate(0.0f, -1f, 0.0f, Space.Self);
         }
-        //var inputString = "";
-        //try
-        //{
-            
-        //    //inputString = Input.inputString;
-
-        //    //if (inputString != "q" && inputString != "e" && inputString != "")
-        //    //{
-        //    //    throw new System.FormatException("invalid key");
-        //    //}
-
-            
-        //}
-        //catch (System.FormatException fe)
-        //{
-        //    Debug.Log(fe.Message);
-        //    throw fe;
-        //}
-        //finally
-        //{
-        //    //Debug.Log(inputString);
-        //}
-
+        
     }
 
     void FixedUpdate()
@@ -62,9 +41,26 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        gameObject.GetComponent<AudioSource>().Stop();
         if (collision.gameObject.name.Contains("NPC"))
         {
             ScoreKeeper.Total -= 100;
         }
+        if (collision.gameObject.name.Contains("Bonus"))
+        {
+            gameObject.GetComponents<AudioSource>()[0].Play();
+            ScoreKeeper.Total += 100;
+        }
+        if (collision.gameObject.name.Contains("Death-Dealer"))
+        {
+            var tada = gameObject.GetComponents<AudioSource>()[1];
+            tada.Play();
+            new WaitForSeconds(3.0f);
+
+            ScoreKeeper.Total = 0;
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
     }
 }

@@ -25,6 +25,7 @@ public class Checkpoint : MonoBehaviour
 
             //make it so it can't be triggered again until reset
             //ability to reset the trigger after all checkpoints have been triggered
+            isTriggered = false;
         }
     }
 }
