@@ -11,15 +11,4 @@ public class HighScore : MonoBehaviour
         tmp = gameObject.GetComponent<TextMeshPro>();
         tmp.text = Assets.Scripts.DataLayer.ReadFile();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnApplicationQuit()
-    {
-        //DataLayer.CreateAndWriteFile(ScoreKeeper.Total.ToString());
-    }
 }

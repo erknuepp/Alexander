@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
         {
             //change color
             gameObject.GetComponent<Renderer>().material.color = Color.green;
-            gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            //gameObject.GetComponent<BoxCollider>().isTrigger = false;
 
             //make it so it can't be triggered again until reset
             //ability to reset the trigger after all checkpoints have been triggered
